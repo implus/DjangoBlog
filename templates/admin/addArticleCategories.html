@@ -1,0 +1,141 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>文档管理</title>
+<link rel="stylesheet" type="text/css" href="/adm/css/base.css">
+<script language="javascript">
+function viewArc(aid){
+	if(aid==0) aid = getOneItem();
+	window.open("archives.asp?aid="+aid+"&action=viewArchives");
+}
+function editArc(aid){
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=editArchives";
+}
+function updateArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=makeArchives&qstr="+qstr+"";
+}
+function checkArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=checkArchives&qstr="+qstr+"";
+}
+function moveArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=moveArchives&qstr="+qstr+"";
+}
+function adArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=commendArchives&qstr="+qstr+"";
+}
+function delArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=delArchives&qstr="+qstr+"";
+}
+
+//获得选中文件的文件名
+function getCheckboxItem()
+{
+	var allSel="";
+	if(document.form2.id.value) return document.form2.id.value;
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(document.form2.id[i].checked)
+		{
+			if(allSel=="")
+				allSel=document.form2.id[i].value;
+			else
+				allSel=allSel+"`"+document.form2.id[i].value;
+		}
+	}
+	return allSel;
+}
+
+//获得选中其中一个的id
+function getOneItem()
+{
+	var allSel="";
+	if(document.form2.id.value) return document.form2.id.value;
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(document.form2.id[i].checked)
+		{
+				allSel = document.form2.id[i].value;
+				break;
+		}
+	}
+	return allSel;
+}
+function selAll()
+{
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(!document.form2.id[i].checked)
+		{
+			document.form2.id[i].checked=true;
+		}
+	}
+}
+function noSelAll()
+{
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(document.form2.id[i].checked)
+		{
+			document.form2.id[i].checked=false;
+		}
+	}
+}
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='/adm/images/allbg.gif'>
+
+<!--  快速转换位置按钮  -->
+<table width="98%" border="0" cellpadding="0" cellspacing="1" bgcolor="#D1DDAA" align="center">
+<tr>
+ <td height="26" background="/adm/images/newlinebg3.gif">
+  <table width="98%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  <td align="left">
+    <input type='button' class="coolbg np" onClick="location='/addArticleCategories/';" value='添加分类' />
+    <input type='button' class="coolbg np" onClick="location='/adminArticle/';" value='我的文档' />
+    <input type='button' class="coolbg np" onClick="location='/articleCategories/';" value='分类管理' />
+ </td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+
+<!--  内容列表   -->
+<form name="form2" method="post" action="">
+
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="24" colspan="5" background="/adm/images/tbg.gif">&nbsp;增加分类</td>
+</tr>
+
+<tr align="center" bgcolor="#FAFAF1" height="22">
+  <td>分类名称</td>
+  <td align="left"><input name="cateName" type="text" id="cateName" value="{{cateName}}"></td>
+  </tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+  <td>分类排序</td>
+  <td align="left"><input name="orderId" type="text" id="orderId" value="{{orderId}}"></td>
+  </tr>
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="10%">&nbsp;</td>
+	<td align="left"><input name="ok" type="submit" id="ok" value="--提交--"></td>
+	</tr>
+</table>
+
+</form>
+
+<!--  搜索表单  -->
+</body>
+</html>

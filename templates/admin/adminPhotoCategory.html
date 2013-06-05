@@ -1,0 +1,164 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>文档管理</title>
+<link rel="stylesheet" type="text/css" href="/adm/css/base.css">
+<script language="javascript">
+function viewArc(aid){
+	if(aid==0) aid = getOneItem();
+	window.open("archives.asp?aid="+aid+"&action=viewArchives");
+}
+function editArc(aid){
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=editArchives";
+}
+function updateArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=makeArchives&qstr="+qstr+"";
+}
+function checkArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=checkArchives&qstr="+qstr+"";
+}
+function moveArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=moveArchives&qstr="+qstr+"";
+}
+function adArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=commendArchives&qstr="+qstr+"";
+}
+function delArc(aid){
+	var qstr=getCheckboxItem();
+	if(aid==0) aid = getOneItem();
+	location="archives.asp?aid="+aid+"&action=delArchives&qstr="+qstr+"";
+}
+
+//获得选中文件的文件名
+function getCheckboxItem()
+{
+	var allSel="";
+	if(document.form2.id.value) return document.form2.id.value;
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(document.form2.id[i].checked)
+		{
+			if(allSel=="")
+				allSel=document.form2.id[i].value;
+			else
+				allSel=allSel+"`"+document.form2.id[i].value;
+		}
+	}
+	return allSel;
+}
+
+//获得选中其中一个的id
+function getOneItem()
+{
+	var allSel="";
+	if(document.form2.id.value) return document.form2.id.value;
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(document.form2.id[i].checked)
+		{
+				allSel = document.form2.id[i].value;
+				break;
+		}
+	}
+	return allSel;
+}
+function selAll()
+{
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(!document.form2.id[i].checked)
+		{
+			document.form2.id[i].checked=true;
+		}
+	}
+}
+function noSelAll()
+{
+	for(i=0;i<document.form2.id.length;i++)
+	{
+		if(document.form2.id[i].checked)
+		{
+			document.form2.id[i].checked=false;
+		}
+	}
+}
+</script>
+</head>
+<body leftmargin="8" topmargin="8" background='/adm/images/allbg.gif'>
+
+<!--  快速转换位置按钮  -->
+<table width="98%" border="0" cellpadding="0" cellspacing="1" bgcolor="#D1DDAA" align="center">
+<tr>
+ <td height="26" background="/adm/images/newlinebg3.gif">
+  <table width="98%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  <td align="left">
+    <input type='button' class="coolbg np" onClick="location='/adminPhotoCategory/';" value='添加分类' />
+    <input type='button' class="coolbg np" onClick="location='/picManager/';" value='我的图片' />
+    <input type='button' class="coolbg np" onClick="location='/picCategories/';" value='分类管理' />
+ </td>
+ </tr>
+</table>
+</td>
+</tr>
+</table>
+
+<!--  内容列表   -->
+<form action="" method="post" enctype="multipart/form-data" name="form2">
+
+<table width="98%" border="0" cellpadding="2" cellspacing="1" bgcolor="#D1DDAA" align="center" style="margin-top:8px">
+<tr bgcolor="#E7E7E7">
+	<td height="26" colspan="6" background="/adm/images/tbg.gif">分类修改</td>
+</tr>
+
+<tr align="center" bgcolor="#FAFAF1" height="22">
+	<td width="12%">分类名称</td>
+	<td width="39%" align="left"><input name="cate_name" type="text" id="cate_name" value="{{cateName}}" size="50"></td>
+	<td width="49%">&nbsp;</td>
+	</tr>
+
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+  <td>分类描述</td>
+  <td align="left"><input name="description" type="text" id="description" value="{{remark}}" size="50"></td>
+  <td>&nbsp;</td>
+  </tr>
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+  <td>分类排序</td>
+  <td align="left"><input name="order" type="text" id="order" value="{{orderId}}" size="50"></td>
+  <td>&nbsp;</td>
+  </tr>
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+  <td>分类图片</td>
+  <td align="left"><input name="file" type="file" size="50"></td>
+  <td>&nbsp;</td>
+{% if bgImage%}
+  </tr>
+<tr align='center' bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+	<td>&nbsp;</td>
+	
+	<td align="left"><img src="{{web_domain}}/{{bgImage}}" width="206" height="155"></td>
+	
+	<td>&nbsp;</td>
+{% endif %}	
+	</tr>
+
+
+<tr bgcolor="#FAFAF1">
+<td height="28" colspan="6" align="center"><input type="submit" name="ok" value="--提交--"></td>
+</tr>
+</table>
+
+</form>
+
+<!--  搜索表单  -->
+</body>
+</html>

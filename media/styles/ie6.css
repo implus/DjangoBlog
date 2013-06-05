@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+#logo {display:inline;}
+#searchbox {display:inline;}
+#searchbox .tabbtnul li {display:inline;}
+#navshadow {font-size:10px; line-height:10px;}
+.list_image ul li {margin:0px;overflow:hidden;}
+.list_image ul li .litpic,.list_image ul li .litpic img {cursor:pointer; margin-top:0px;}
+#img_content #imgbox li.this {
+	display:block;
+	font-size:437px;
+	line-height:500px;
+}

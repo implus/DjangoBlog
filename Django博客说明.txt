@@ -1,0 +1,36 @@
+  朋友，很高兴与您相见，我是一名PHP开发工程师，虽然平时的工作大多数都与PHP相关，但我
+也热衷于开源应用，尤其是Python。我才接触Python不久，为了在Python下找Web应用的感觉，使用
+到了Django框架，我也是第一次使用这框架，有很多的地方都不太了解，高手您就飘过吧，使劲儿拍砖
+吧！确实惹恼您了，我附上自己的联系方式，您就开骂吧,呵呵！
+QQ:334192009 Email:admin@PHPdesigner.org 我的博客地址:http://www.phpcq.com
+
+
+  Django博客的演示地址:http://django.phpcq.com 
+
+  settings.py中的数据需要修改:
+DATABASE_ENGINE = 'mysql'      数据库类型 
+DATABASE_NAME = 'django_blog'  数据库名称           
+DATABASE_USER = 'root'         用户名   
+DATABASE_PASSWORD = ''         密码
+DATABASE_HOST = 'localhost'    数据库主机地址  
+DATABASE_PORT = ''             数据库主机端口号
+
+WEB_DOMAIN = 'http://localhost:8000'#这里需要修改为您的Django URL服务地址
+
+
+ 本博客的数据库与模型非Django自动生成，采用Python的web开发框架(Django)和Mysql数据库，
+数据库的设计很不规范,由于时间方面的问题(基于才“出道”时的原有博客数据库结构)
+图片上传采用Python的Image类库，分页采用的是Paginator，其他的我就不一一列举出来了，请看源码!
+
+
+  在这里很感谢Python技术群(2309975)的管理员老王，他给了我不少的帮助，还有感谢好朋友松哥对
+整个页面设计，感谢Django技术群(19525555)的刀总提供空间支持，还有各位支持者与反对者，还有在
+看这TXT的您！
+
+    祝大家
+	
+   工作顺利，身体健康，天天有肉吃！
+
+
+  后台登录模块:http://django.phpcq.com/login  初始管理员、密码均为admin
+

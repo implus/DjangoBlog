@@ -1,0 +1,68 @@
+<script language="JavaScript">
+<!--
+	$(document).ready(function(){
+		$("#searchbtn1").bind("click", function(){
+			var keywords = $("#searchWords1").val();
+			if ('' != keywords) {
+				window.location.href = '/?keywords='+keywords
+			}
+		});
+	});
+	function search(type) {
+		if('web' == type){
+			$("#searchbtn1").bind("click", function(){
+				var keywords = $("#searchWords1").val();
+				if ('' != keywords) {
+					window.location.href = '/?keywords='+keywords
+				}
+			});
+		}
+	}
+//-->
+</script>
+ <div id="header">
+    <div id="banner">
+      <div id="logo"><a href="#" title="Django博客，Python博客-Python"></a></div>
+      <div id="searchbox" class="ovhidden">
+        <ul class="tabbtnul">
+          <li id="inside" class="this" onclick="search('web')">站内</li>
+		  <!--
+          <li id="webside">Web</li>
+		  -->
+        </ul>
+        <ul id="search-form" class="ovhidden">
+          <li class="insidecon">
+              <div id="search-key"><input type="text" name="searchWords" id="searchWords1" value="" /></div>
+              <div class="btn"><input type="submit" name="searchbtn" id="searchbtn1" value="Search" /></div>
+          </li>
+		  
+          <li class="websidecon">
+            <form id="form1" method="post"action="http://www.google.com.hk">
+              <div id="search-key"><input type="text" name="searchWords" id="searchWords" value="" /></div>
+              <div class="btn"><input type="submit" name="searchbtn" id="searchbtn" value="Search" /></div>
+            </form>
+          </li>
+		  
+        </ul>
+      </div>
+    </div>
+    <ul id="nav">
+	{% if not category %}
+      <li><a class="this" href="/">首 页</a></li>
+	{% else %}
+	   <li><a  href="/">首 页</a></li>
+	{% endif %}
+	
+	{% for categories in categories %}
+		{% ifequal category  categories.id %}
+			<li><a href="/?category={{categories.id}}" class="this">{{categories.cateName}}</a></li>
+		{% else %}
+			<li><a href="/?category={{categories.id}}" >{{categories.cateName}}</a></li>
+		{% endifequal %}
+	{% endfor %}
+	
+	<li><a href="/photo/">相 册</a></li>
+      <li class="infotxt">Python|Django|技术编程|技术资源|WEB编程</li>
+    </ul>
+    <div id="navshadow"></div>
+  </div>

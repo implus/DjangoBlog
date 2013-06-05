@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{caption_one}}</title>
+<link href="{{web_domain}}/styles/global.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<link href="{{web_domain}}/styles/ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script type="text/javascript" src="{{web_domain}}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{{web_domain}}/scripts/myblog.js"></script>
+</head>
+
+<body>
+{{sql_queries}}
+<div id="container">
+  <div id="header">
+    {%include 'header.html'%}
+  </div>
+  <div id="content">
+    {%include 'right.html'%}
+    <div class="article_article">
+      <h1>{{caption_one}}</h1>
+      <div class="info">
+        <span>文章类别：{{cateName_one}}</span>
+        <span>阅读次数：{{degree_one}}</span>
+        <span>时间：{{times}}</span>
+      </div>
+      <div class="zoom">
+    {% autoescape off %}
+       {{content_one}}
+    {% endautoescape %}
+      </div>
+      <ul class="nav_article">
+	    <li>上一篇文章：
+    {% if previous %}
+    <a href="/action/?action={{previous_id}}">{{previous_caption}}</a>
+    {% else %}
+    没有了!
+    {% endif %}</li>
+        <li>
+	  下一篇文章：
+    {% if next %}
+    <a href="/action/?action={{next_id}}">{{next_caption}}</a>
+    {% else %}
+    没有了!
+    {% endif %}</li>
+    </ul>
+    </div>
+  </div>
+  {%include 'bottom.html'%}
+</div>
+</body>
+</html>

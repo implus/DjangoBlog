@@ -1,0 +1,54 @@
+ <div id="sidebar">
+      <h1>关于Django博客</h1>
+      <div class="boxcont about"><img src="{{web_domain}}/images/about_temp.jpg" alt="" width="212" height="130" />
+    本博客-采用Python的web框架Django与Mysql数据库,致力于对Python、Django的了解
+    与研究<br />
+        Django技术QQ群:19525555<br />
+        Python技术QQ群:2309975</div>
+      <div class="bottom"></div>
+      <h1>Tags</h1>
+      <div class="boxcont">
+        <ul class="tags">
+		{% for tag in tagValues %}
+          <li><a href="/?tags={{tag|urlencode}}">{{tag}}</a></li>
+		{% endfor %}
+        </ul>
+      </div>
+	  <!--
+	  <div class="bottom"></div>
+      <h1>博客最近档案</h1>
+      <div class="boxcont">
+        <ul class="lasttime">
+          <li><a href="#">2010-01</a> [ Total：5 ]</li>
+          <li><a href="#">2010-01</a> [ Total：5 ]</li>
+          <li><a href="#">2010-01</a> [ Total：5 ]</li>
+          <li><a href="#">2010-01</a> [ Total：5 ]</li>
+          <li><a href="#">2010-01</a> [ Total：5 ]</li>
+          <li><a href="#">2010-01</a> [ Total：5 ]</li>
+        </ul>
+      </div>
+	  -->
+      <div class="bottom"></div>
+      <h1>本站最新文章</h1>
+      <div class="boxcont">
+        <ul class="article">
+		{% for captions in captions %}
+          <li><a href="/action/?action={{captions.id}}">{{captions.caption}}</a></li>
+		{% endfor %}
+        </ul>
+      </div>
+      <div class="bottom"></div>
+      <h1>友情链接</h1>
+      <div class="boxcont">
+        <ul class="links">
+		{% for links in linkValues%}
+          <li><a href="{{links.linkAdr}}" target="_blank" title="{{links.linkRemark}}">{{links.linkName}}</a></li>
+		{% endfor%}
+		<!--
+          <li><a href="#"><img src="images/valid-xhtml10.gif" alt="" width="88" height="31" /></a></li>
+          <li><a href="#"><img src="images/vcss.gif" alt="" width="88" height="31" /></a></li>
+		  -->
+        </ul>
+      </div>
+      <div class="bottom"></div>
+    </div>

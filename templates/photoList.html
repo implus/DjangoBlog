@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{cateName}} | 相册</title>
+<link href="{{web_domain}}/styles/global.css" rel="stylesheet" type="text/css" />
+<link href="{{web_domain}}/styles/thickbox.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<link href="styles/ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script type="text/javascript" src="{{web_domain}}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{{web_domain}}/scripts/myblog.js"></script>
+<script type="text/javascript" src="{{web_domain}}/scripts/thickbox-compressed.js"></script>
+</head>
+
+<body>
+<div id="container">
+ {% include 'header.html' %}
+  <div id="content">
+	{% include 'right.html' %}
+    <div class="list_image">
+      <div class="weizhi">当前位置：<a href="/photo/">相册</a> >> {{cateName}}</div>
+      <ul>
+		{% for photoList in photo.object_list%}
+        <li>
+          <a href="/photoShow/?height=520&width=680&id={{photoList.id}}&cateId={{photoList.cate_id}}" class="thickbox" title="{{cateName}}">
+            <div class="litpic">
+              <img src="{{web_domain}}/{{photoList.picAdr}}" />
+              <div class="info"><span>{{photoList.picRemark}}</span></div>
+            </div>
+          </a>
+          <div class="title">{{photoList.picName}}</div>
+        </li>
+       {% endfor %}
+      </ul>
+      <div id="pages">
+		{% if photoList.has_previous %}
+		<!-- <a href="?page={{photoList.previous_page_number}}" title="下一页">上一页</a>&nbsp; -->
+		<a href="?page=1{{action}}" title="首 页">首 页</a>&nbsp;
+		{% endif %}
+		{% for p in page_range %}
+		{% ifequal p articleList.number %}
+		<span style="background:#FF9900;">{{p}}</span>
+		{% else %}
+		<a href="?page={{p}}{{action}}" title="第{{p}}页">{{p}}</a>
+		{% endifequal %}
+		{% endfor %}
+		&nbsp;
+		{% if articleList.has_next %}
+		<!-- <a href="?page={{photoList.next_page_number}}" title="下一页">下一页</a>&nbsp; -->
+		<a href="?page={{photoList.paginator.num_pages}}{{action}}" title="末 页">末 页</a>&nbsp;
+		{% endif %}
+	  </div>
+    </div>
+  </div>
+   {% include 'bottom.html' %}
+</div>
+</body>
+</html>

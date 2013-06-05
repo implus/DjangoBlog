@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="icon" href="{{web_domain}}/images/favicon.ico" type="image/x-icon" />
+<link rel="Bookmark" href="{{web_domain}}/images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="{{web_domain}}/images/favicon.ico" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{web_name}}</title>
+<link href="{{web_domain}}/styles/global.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<link href="{{web_domain}}/styles/ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script type="text/javascript" src="{{web_domain}}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{{web_domain}}/scripts/myblog.js"></script>
+</head>
+<body>
+<div id="container">
+<!-- header -->
+{%include 'header.html'%}
+  <div id="content">
+  <!-- left -->
+   {%include 'right.html'%}
+    <div class="list_article">
+	{% if articles%}
+      <ul>
+	  <!-- Start content-->
+	  {% for articles in articleList.object_list %}
+        <li>
+          <div class="list_titlebox">
+            <div class="time">
+              <div class="month">{{articles.times|date:'m'}}<span>月</span></div>
+              <div class="date">{{articles.times|date:'d'}}</div>
+              <div class="year">{{articles.times|date:'Y'}}</div>
+            </div>
+            <h1>{{articles.caption}}</h1>
+          </div>
+          <div class="list_boxcont">
+            <div class="zoom">
+            {% autoescape off %}
+			{{articles.shortContent}}
+            {% endautoescape %}
+            </div>
+            <div class="info">
+              <span>文章类别：{{articles.cate__cateName}}</span>
+              <span>阅读次数：{{articles.degree}}</span>
+              <a href="/action/?action={{articles.id}}">查看全文</a>
+            </div>
+          </div>
+        </li>
+		{% endfor %}
+
+	<!-- End content-->
+      </ul>
+      <div id="pages">
+		{% if articleList.has_previous %}
+		<!-- <a href="?page={{articleList.previous_page_number}}" title="下一页">上一页</a>&nbsp; -->
+		<a href="?page=1{{action}}" title="首 页">首 页</a>&nbsp;
+		{% endif %}
+		{% for p in page_range %}
+		{% ifequal p articleList.number %}
+		<span style="background:#FF9900;">{{p}}</span>
+		{% else %}
+		<a href="?page={{p}}{{action}}" title="第{{p}}页">{{p}}</a>
+		{% endifequal %}
+		{% endfor %}
+		&nbsp;
+		{% if articleList.has_next %}
+		<!-- <a href="?page={{articleList.next_page_number}}" title="下一页">下一页</a>&nbsp; -->
+		<a href="?page={{articleList.paginator.num_pages}}{{action}}" title="末 页">末 页</a>&nbsp;
+		{% endif %}
+      </div>
+    </div>
+	{% else %}
+		<center>没有文章呢！</center>
+	{% endif %}
+  </div>
+  <!-- bottom -->
+  {%include 'bottom.html'%}
+</div>
+</body>
+</html>

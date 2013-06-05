@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台登录</title>
+<style type="text/css">
+body {
+	margin: 0px;
+	background:#F6F6F6;
+	font-size:12px;
+}
+#warp {
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+#loginbox {
+	position:relative;
+	width:300px;
+	height:200px;
+	padding:10px;
+	top:50%;
+	left:50%;
+	margin-top:-120px;
+	margin-left:-150px;
+	border:3px solid #CCC;
+
+}
+h1 {
+	display:block;
+	width:300px;
+	height:60px;
+	float:left;
+	clear:both;
+	margin:0px;
+	padding:0px;
+	border-bottom:1px dashed #CCC;
+	line-height:50px;
+	font-family:"微软雅黑", "黑体", "宋体", Arial;
+	font-size:24pt;
+	color:#333;
+}
+#login {
+	display:block;
+	width:300px;
+	height:120px;
+	float:left;
+	clear:both;
+	margin:0px;
+	padding:10px 0px;
+}
+label {
+	display:block;
+	list-style:none;
+	width:300px;
+	height:40px;
+	float:left;
+	clear:both;
+	margin:0px;
+	padding:0px;
+	overflow:hidden;
+}
+label .title {
+	display:block;
+	width:70px;
+	float:left;
+	line-height:40px;
+	text-align:right;
+	padding-right:20px;
+	color:#333;
+	font-weight:bold;
+}
+label input {
+	width:180px;
+	height:20px;
+	margin:8px 0px;
+	float:left;
+	border:2px solid #CCC;
+	padding:0px 4px;
+	color:#333;
+}
+label input:focus {
+	border:2px solid #999;
+	background:#F0F0F0;
+}
+#btnbox {
+	width:210px;
+	height:40px;
+	float:left;
+	clear:both;
+	padding-left:90px;
+}
+#btnbox input {
+	width:100px;
+	height:32px;
+	float:left;
+	background:#BBB;
+	border:2px solid #999;
+	color:#FFF;
+	cursor:pointer;
+	font-size:14px;
+	font-weight:bold;
+	margin:8px 0px 0px 0px;
+}
+#btnbox input:hover {
+	background:#777;
+	border:2px solid #666;
+}
+</style>
+</head>
+
+<body>
+<div id="warp">
+  <div id="loginbox">
+    <h1>后台管理系统</h1>
+    <form id="login" name="form1" method="post" action="">
+      <label for="username">
+        <span class="title">用户名：</span>
+        <input type="text" name="username" id="username" />
+      </label>
+      <label for="userpassword">
+        <span class="title">密　码：</span>
+        <input type="password" name="password" id="userpassword" />
+      </label>
+      <div id="btnbox">
+        <input type="submit" name="ok" id="button" value="登录" />
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

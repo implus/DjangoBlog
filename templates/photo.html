@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>相册 - {{web_name}}</title>
+<link href="{{web_domain}}/styles/global.css" rel="stylesheet" type="text/css" />
+<link href="{{web_domain}}/styles/thickbox.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<link href="{{web_domain}}/styles/ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script type="text/javascript" src="{{web_domain}}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{{web_domain}}/scripts/myblog.js"></script>
+</head>
+
+<body>
+<div id="container">
+  {% include 'header.html' %}
+  <div id="content">
+     {% include 'right.html' %}
+    <div class="list_image">
+      <ul>
+		{% for photoCategorie in photoCategories.object_list %}
+        <li>
+          <a href="/photoList/?cateId={{photoCategorie.id}}" class="thickbox" title="{{photoCategorie.cateName}}">
+            <div class="litpic">
+              <img src="{{web_domain}}/{{photoCategorie.bgImage}}" />
+              <div class="info"><span>{{photoCategorie.remark}}</span></div>
+            </div>
+          </a>
+          <div class="title">{{photoCategorie.cateName}}</div>
+        </li>
+       {% endfor %}
+      </ul>
+      <div id="pages">
+		{% if photoCategorie.has_previous %}
+		<!-- <a href="?page={{photoCategorie.previous_page_number}}" title="下一页">上一页</a>&nbsp; -->
+		<a href="?page=1{{action}}" title="首 页">首 页</a>&nbsp;
+		{% endif %}
+		{% for p in page_range %}
+		{% ifequal p photoCategorie.number %}
+		<span style="background:#FF9900;">{{p}}</span>
+		{% else %}
+		<a href="?page={{p}}{{action}}" title="第{{p}}页">{{p}}</a>
+		{% endifequal %}
+		{% endfor %}
+		&nbsp;
+		{% if photoCategorie.has_next %}
+		<!-- <a href="?page={{photoCategorie.next_page_number}}" title="下一页">下一页</a>&nbsp; -->
+		<a href="?page={{photoCategorie.paginator.num_pages}}{{action}}" title="末 页">末 页</a>&nbsp;
+		{% endif %}
+	  </div>
+    </div>
+  </div>
+   {% include 'bottom.html' %}
+</div>
+</body>
+</html>

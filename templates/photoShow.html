@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的相册 - PHPdesigner-PHP博客 | PHP技术博客 | PHP技术站 | PHP资源 | PHP研究</title>
+<link href="{{web_domain}}/styles/global.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<link href="{{web_domain}}/styles/ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script type="text/javascript" src="{{web_domain}}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{{web_domain}}/scripts/myblog.js"></script>
+<script type="text/javascript" src="{{web_domain}}/scripts/thickbox-compressed.js"></script>
+</head>
+
+<body>
+<div id="img_content">
+{% if previous_id %}
+<div id="img_prev" class="img_prev_bg1" title="上一张图">
+<a href="/photoShow/?height=520&width=680&id={{previous_id}}" class="thickbox" title="上一张图">
+{% else %}
+<div id="img_prev" class="img_prev_bg1" title="没有了!">
+<a class="thickbox"></a>
+{% endif %}
+<span class="img_prev_bg2"></span>
+</a>
+</div>
+{% if next_id %}
+  <div id="img_next" class="img_next_bg1" title="下一张图">
+<a href="/photoShow/?height=520&width=680&id={{next_id}}" class="thickbox" title="下一张图">
+{% else %}
+<div id="img_next" class="img_next_bg1" title="没有了!">
+<a class="thickbox"></a>
+{% endif %}
+<span class="img_next_bg2"></span>
+</a>
+</div>
+  <ul id="imgbox">
+    <li class="this"><img src="{{web_domain}}/{{nonePhoto_one}}" /></li>
+  </ul>
+  <div id="img_info">图片描述:{{nonePicRemark_one}}</div>
+</div>
+</body>
+</html>
