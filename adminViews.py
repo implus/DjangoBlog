@@ -9,7 +9,10 @@ from django.core.paginator import Paginator,InvalidPage,EmptyPage,PageNotAnInteg
 import time,datetime
 from django.db.models import Q
 from django.db import connection
-import Common,Models,settings,Image,os,hashlib
+import Common,Models,settings,os,Image,hashlib
+import StringIO
+import django.core.files.uploadedfile
+
 #管理员登录页面
 def login(request):
     if request.POST.has_key('ok'):
@@ -198,7 +201,7 @@ def adminPhotoCategory(request):
             order_id = request.POST['order']
             remark_post = request.POST['description']
             f = request.FILES.get('file', None)
-            image = Image.open(f)
+            image = open(f)
             #image.thumbnail((206,155),Image.ANTIALIAS)#缩略图
             imageTime = str(time.time()).split('.')
             image.save(settings.MEDIA_ROOT+imageTime[0]+".png","png")   
@@ -236,7 +239,7 @@ def adminPhotoCategory(request):
                 remark_post = request.POST['description']
                 fileObj = request.FILES.get('file', None)
                 if fileObj:
-                    image = Image.open(fileObj)
+                    image = open(fileObj)
                     imageTime = str(time.time()).split('.')
                     image.save(settings.MEDIA_ROOT+imageTime[0]+".png","png")
                     add = Models.Photocategories(orderId = order_id,cateName = cate_name,
@@ -292,7 +295,7 @@ def photoAdmin(request):
             picDescription = request.POST['picDescription']
             if fileObj:#当修改图片地址
                 f = request.FILES.get('file', None)
-                image = Image.open(f)
+                image = open(f)
                 imageTime = str(time.time()).split('.')
                 image.save(settings.MEDIA_ROOT+imageTime[0]+".png","png")
                 picAdr = str(picGet.picAdr)
@@ -312,7 +315,13 @@ def photoAdmin(request):
             picCategory = request.POST['category']
             picDescription = request.POST['picDescription']
             f = request.FILES.get('file', None)
-            image = Image.open(f)
+
+#data = f.file
+#fs = StringIO.StringIO(data)
+            fs = request.FILES['file']
+            image = Image.open(fs)
+
+#            image = open(f['content'])
             imageTime = str(time.time()).split('.')
             image.save(settings.MEDIA_ROOT+imageTime[0]+".png","png")
             photoAdd = Models.Photo(cate_id = picCategory,
